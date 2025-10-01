@@ -56,9 +56,7 @@ export default function ChatWidget() {
         aria-label={open ? "Cerrar chat" : "Abrir chat"}
         onClick={() => setOpen(v => !v)}
       >
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path d="M12 2a1 1 0 0 1 1 1v1.06a8.003 8.003 0 0 1 7 7.94v3a4 4 0 0 1-4 4h-1.28A3.5 3.5 0 0 1 12 22a3.5 3.5 0 0 1-2.72-1H8a4 4 0 0 1-4-4v-3a8.003 8.003 0 0 1 7-7.94V3a1 1 0 0 1 1-1Zm-4 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM8 14h8a1 1 0 1 1 0 2H8a1 1 0 0 1 0-2Z" />
-        </svg>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEDElEQVR4nO2YS0wbVxSG79hjO05EwqowosusUJNscdTCCoWQTZelipKodgx+8hiwhVhFbVXRFrWsKPamTaJEIV00gEgAA4bwCMEGv6QkRGoYk1RdtpA2SgI90R3XHs/DFiMPOCP5lz5pdOfozv+fa3vuNUIllVRSSZKiQ+eIztBzgg5tInr1LFKbSEdwk3QGIcVMEqlNevPwpsEyAhi9ZUR9AQ5/fvOs8eJtMF4cgsPnbzQgNUrTvgwYpFZp3fOAQWoV6ZgBDFKr9C3joG+ZeD8CHO9fN1D+DTflZx5QPuYl5U+CovjwnHjupAs/S1HzHw4kqyp9TERx035pKv3MGn6mIuZxNw7SPJUVQpGVSH1sDtY8xeEsPICPWS5eAGZJgRVgtosYYFuBAIJJfQyUfbsO2p4EIG9MEbQ9CSjrfcrOLXye4gHKep8A8kT2hbLe9QIDeOOnkDd6HXljL5Anuou7I5yQ7I4A0bnK0f4ACGcwBb7OvidFnnqyOyIOgFcp5QV7uoY6YyelzXetWVFX5K2wK8IJCTrE0bYIVF8IGp68gjOPX0Hl96kxXo3MekoYQLxSb5Bn7TLfPB2uJejwrlTHhBOmd5gstknWyKd/AMuZR/+yY7wamfWUsGFSq0iHd1FH6OOMf6Lj4biGXgEphBNq25Y4mu9mzKTBY7wamfWUsGE5fBH0yt1MAE3b8laurokCtM5zWEfFhqyj/BqZ9VS+Fc+mbXkrE0DburSVq2uiL7FrjsMyLDKEx3g1MuupfCueTeviX9wKuO7fSx8+hIgCZA7qQSDNd8SGzHf4NTLrKWGAHL407vmxTADSGfyEdM7uSnVNOKHOPsXxxW/Q8OifjBl8jcd4NTLrqXwrzrFDumZP836IdI4ZC+mYfpM+RaURBbBNcjSPQdXXs6wRTNVXs+wYr0ZmPSUMIPCDPeqc02bJV4HOMXmCtAd+Ie1Tz3X2qR2pjhxyTYO+eZzj8ijoL/2aAl9n35MiT/0h93SOFQ/8R9oCm6R96mddy8xHBW0lyq+EQW8d2xfKvxS/d440XWWRZTpfALzhwiGMjgkwWEYVweiYgPIrIcnNnPHCLRZ1bqcHk1sG8wgYzMN/q/JAUznwe0JnCwBpC8QLCJB0FSvAsW8Sc9rWBdC6F/oKO9T7mbWDNl8xyDzWdIVfE12rO4herUYF/62y1xCDz6CiPw4VP0T49MfZe3s1r+1J/Jk6C8R+REqoeiihx/8S4IN2vi82Nlr7WTM0NjbyqG1qSYXIZdy38fKDnzbiR797Okd4o6//Nz+JrCEdOmjV19eDFHs+J3tib9nOF8M8Vl1dHUiR33R0G3liceSN9qHuRGGf+UJlMpnum0wmyKampmauqKZKKqmkktB+6B3pu5wct5mfIwAAAABJRU5ErkJggg==" alt="chatbot--v1" />
       </button>
 
       {/* Panel del chat */}
