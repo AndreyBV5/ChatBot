@@ -13,8 +13,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# crea tablas si no existen
 Base.metadata.create_all(bind=engine)
+
+@app.get("/")
+def root():
+    return {"ok": True, "service": "ChatBot API", "docs": "/docs"}
 
 app.include_router(chat.router)
 app.include_router(faq.router)

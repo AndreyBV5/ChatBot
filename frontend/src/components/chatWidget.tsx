@@ -38,7 +38,6 @@ export default function ChatWidget() {
               ))}
             </div>
           )}
-          <div className="cb-meta">({r.intent} · conf {r.confidence.toFixed(2)})</div>
         </div>
       );
       setMsgs(m => [...m, { who: "bot", text: r.answer, rich: content }]);
