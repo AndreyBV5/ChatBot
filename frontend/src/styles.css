@@ -1,0 +1,72 @@
+/* Fondo general de tu sitio (déjalo si ya lo tenías) */
+body{font-family:system-ui,Arial,sans-serif;background:#0f172a;color:#e2e8f0;margin:0}
+
+/* FAB: botón flotante abajo/derecha */
+.cb-fab{
+  position:fixed; right:20px; bottom:20px; z-index:9999;
+  width:56px; height:56px; border-radius:9999px; border:none;
+  background:#22c55e; color:#052e10; box-shadow:0 10px 24px rgba(0,0,0,.35);
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease;
+}
+.cb-fab:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(0,0,0,.45); }
+.cb-fab svg{ fill:currentColor; }
+
+/* Panel contenedor (para animación/overlay táctil en móvil) */
+.cb-panel{
+  position:fixed; right:20px; bottom:92px; z-index:9998;
+  width:0; height:0; pointer-events:none; /* cerrado */
+}
+.cb-panel.open{ pointer-events:auto; width:auto; height:auto; }
+
+/* Tarjeta del chat */
+.cb-card{
+  width:380px; max-width:calc(100vw - 24px);
+  height:520px; max-height:calc(100vh - 120px);
+  background:#111827; border:1px solid #1f2937; border-radius:16px;
+  box-shadow:0 18px 48px rgba(0,0,0,.5);
+  overflow:hidden; transform:translateY(8px); opacity:0;
+  transition:opacity .18s ease, transform .18s ease;
+}
+
+/* Cuando está abierto, mostramos/transicionamos */
+.cb-panel.open .cb-card{ opacity:1; transform:translateY(0); }
+
+/* Header */
+.cb-head{ display:flex; align-items:center; justify-content:space-between;
+  padding:12px 14px; border-bottom:1px solid #1f2937; }
+.cb-title{ font-weight:700; }
+.cb-close{ background:transparent; border:none; color:#94a3b8; font-size:22px; cursor:pointer; }
+
+/* Chat area */
+.cb-chat{ height:calc(100% - 112px); overflow:auto; padding:12px 14px; }
+.cb-msg{ margin:6px 0; line-height:1.35; max-width:85%; }
+.cb-msg.bot{ background:#1f2937; padding:10px 12px; border-radius:12px; display:inline-block; }
+.cb-msg.you{ background:#334155; padding:10px 12px; border-radius:12px; display:inline-block; margin-left:auto; }
+
+/* Input row */
+.cb-row{ display:flex; gap:8px; border-top:1px solid #1f2937; padding:12px; }
+.cb-row input{
+  flex:1; padding:10px; border-radius:10px; border:1px solid #334155;
+  background:#0b1220; color:#e2e8f0;
+}
+.cb-row button{
+  padding:10px 14px; border-radius:10px; border:0; background:#22c55e;
+  color:#052e10; font-weight:600; cursor:pointer;
+}
+
+/* Sugerencias y meta */
+.cb-sug a{ color:#93c5fd; cursor:pointer; text-decoration:underline; margin-right:8px }
+.cb-meta{ opacity:.6; font-size:12px; margin-top:6px }
+
+/* Responsive: en móviles, que ocupe más espacio y se pegue a bordes */
+@media (max-width: 520px){
+  .cb-panel{ right:12px; bottom:84px; }
+  .cb-card{
+    width:calc(100vw - 24px);
+    height:70vh;
+    max-height:70vh;
+    border-radius:14px;
+  }
+}
+
