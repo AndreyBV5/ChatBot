@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+SQLAlchemy
+python-dotenv
+scikit-learn
+numpy
+scipy
+python-levenshtein
