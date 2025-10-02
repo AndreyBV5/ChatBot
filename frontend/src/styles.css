@@ -55,11 +55,10 @@ body{font-family:system-ui,Arial,sans-serif;background:#0f172a;color:#e2e8f0;mar
   color:#052e10; font-weight:600; cursor:pointer;
 }
 
-/* Sugerencias y meta */
 .cb-sug a{ color:#93c5fd; cursor:pointer; text-decoration:underline; margin-right:8px }
 .cb-meta{ opacity:.6; font-size:12px; margin-top:6px }
 
-/* Responsive: en móviles, que ocupe más espacio y se pegue a bordes */
+/* Responsive */
 @media (max-width: 520px){
   .cb-panel{ right:12px; bottom:84px; }
   .cb-card{

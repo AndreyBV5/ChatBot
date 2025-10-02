@@ -5,10 +5,10 @@ from sqlalchemy.orm import Session
 from db import get_db
 from models import FAQ
 from schemas import ChatQuery, ChatResponse
-from services.matcher import FAQMatcher, normalize  # usamos normalize del matcher
+from services.matcher import FAQMatcher, normalize
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
-matcher = FAQMatcher()   # cache en memoria
+matcher = FAQMatcher()
 
 def rebuild_index(db: Session):
     items = [(f.id, f.question) for f in db.query(FAQ).all()]
@@ -36,7 +36,7 @@ def query_chat(body: ChatQuery, db: Session = Depends(get_db)):
         return ChatResponse(answer=BYE_MSG, intent="closing", confidence=1.0, suggestions=[])
 
     # --- Buscador de FAQs ---
-    results = matcher.query(body.message, top_k=3)
+    results = matcher.query(body.message, top_k=12)
 
     # Umbrales explicables
     HIGH, MID = 0.80, 0.55

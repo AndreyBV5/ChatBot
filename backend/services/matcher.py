@@ -3,7 +3,6 @@ import re, unicodedata
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# ---- Intentamos importar Levenshtein; si no, usamos rapidfuzz como fallback
 try:
     from Levenshtein import distance as lev_distance
 except Exception:
@@ -11,7 +10,7 @@ except Exception:
         from rapidfuzz.distance import Levenshtein as RF_Levenshtein
         lev_distance = RF_Levenshtein.distance
     except Exception:
-        # Fallback mínimo (no debería usarse; instala una de las dos librerías)
+        # Fallback mínimo
         def lev_distance(a: str, b: str) -> int:
             return abs(len(a) - len(b))
 
@@ -19,7 +18,7 @@ except Exception:
 def normalize(s: str) -> str:
     s = s.lower()
     s = unicodedata.normalize("NFD", s)
-    s = s.encode("ascii", "ignore").decode("utf-8")  # quita tildes
+    s = s.encode("ascii", "ignore").decode("utf-8")
     s = re.sub(r"[^a-z0-9\s]", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
@@ -27,7 +26,7 @@ def normalize(s: str) -> str:
 class FAQMatcher:
     def __init__(self):
         self.tfidf: Optional[TfidfVectorizer] = None
-        self.matrix = None  # scipy.sparse matrix | None
+        self.matrix = None
         self.questions_raw: List[str] = []
         self.questions_norm: List[str] = []
         self.faq_ids: List[int] = []
@@ -40,7 +39,6 @@ class FAQMatcher:
         self.questions_raw = [q for _, q in items]
         self.questions_norm = [normalize(q) for q in self.questions_raw]
 
-        # ✅ Si no hay FAQs, dejamos todo en None para que query() regrese []
         if len(self.questions_norm) == 0:
             self.tfidf = None
             self.matrix = None
@@ -50,7 +48,6 @@ class FAQMatcher:
         self.matrix = self.tfidf.fit_transform(self.questions_norm)
 
     def query(self, text: str, top_k=3):
-        # ✅ Comprobaciones seguras (no usar "if not self.matrix" con matrices sparse)
         if self.tfidf is None or self.matrix is None or self.matrix.shape[0] == 0:
             return []
 
@@ -58,7 +55,7 @@ class FAQMatcher:
         v = self.tfidf.transform([q])
         sims = cosine_similarity(v, self.matrix)[0]
 
-        # indices ordenados (top_k acotado por nº de filas)
+        # indices ordenados
         k = min(top_k, self.matrix.shape[0])
         idxs = sims.argsort()[::-1][:k]
 
@@ -67,7 +64,7 @@ class FAQMatcher:
             fid = self.faq_ids[idx]
             score = float(sims[idx])
 
-            # Bono difuso para typos cercanos (Levenshtein normalizado 0..1)
+            # Bono difuso para tipos cercanos 
             target = self.questions_norm[idx]
             denom = max(1, len(target))
             fuzzy = 1.0 - (lev_distance(q, target) / denom)
